@@ -127,6 +127,7 @@ Used by `dice.register_die`.
         collect = ""
     },
     -- Sounds to be used on the specified events.
+    -- use `dice.sounds.die` or `dice.sounds.coin` for the pre_packaged sound packs
     -- `fly` and `returning` are treated the same, with the volume fading based on the velocity.
     -- If sound is not defined, no sound will be played for that event.
     -- `shake` when shaking, 

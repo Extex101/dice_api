@@ -45,7 +45,8 @@ function dice.generate_number_texture(number, font, max, tint)
 end
 
 function dice.play_sound(object, skin, name, loop, fade)
-    if type(skin) ~= "table" or not skin:get("sounds") or not skin:get("sounds")[name] then
+    if type(skin) ~= "table" or type(skin) == "table" and not skin.definition or
+        not skin:get("sounds") or not skin:get("sounds")[name] then
         return
     end
     local sound = skin:get("sounds")[name]
@@ -348,7 +349,7 @@ core.register_chatcommand("rename_die", {
             return false, "You are not holding a die."
         end
         local skin = dice.registered_skins[item_name]
-        if not type(skin) == "table" or skin:get("groups") then
+        if not type(skin) == "table" or type(skin) == "table" and not skin.definition then
             return false, "You are not holding a die."
         end
 
