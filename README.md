@@ -32,9 +32,11 @@ dice.register_die("my_dice_pack:d6", {
 ### Personalize your die with:
 `/rename_die <name>`
 
-
+#### Command Example:
 ![DICE_API Renaming Die](https://github.com/Extex101/link-images/blob/main/dice_api_rename_die_example.png?raw=true)
 
+#### Updated tooltip:
 ![DICE_API Renamed Die Tooltip](https://github.com/Extex101/link-images/blob/main/dice_api_renamed_die_example.png?raw=true)
 
+#### Roll-result chat message:
 ![DICE_API Renamed chat message](https://github.com/Extex101/link-images/blob/main/dice_api_rolled_die_result_renamed.png?raw=true)
