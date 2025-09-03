@@ -5,6 +5,8 @@
 Have you ever wanted to flip a coin, make a board game, or run a TTRPG in Luanti? Well now you can!
 This mod makes all of that possible with fun and easy-to-use API.
 
+
+![DICE_API Title banner](https://github.com/Extex101/link-images/blob/main/dice_api_title_banner.png?raw=true)
 ```lua
 dice.register_die("my_dice_pack:d6", {
     preset = "d6",
