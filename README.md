@@ -47,3 +47,6 @@ Currently supports: Coins, D6, D12, D20
 
 #### Roll-result chat message:
 ![DICE_API Renamed chat message](https://github.com/Extex101/link-images/blob/main/dice_api_rolled_die_result_renamed.png?raw=true)
+
+### Disclaimer:
+> This mod is not to be used in the gambling of real money. By downloading this mod you agree that you will not use this mod in the gambling of real-world currency, crate-keys or any other pay-to-obtain in-game currency.
