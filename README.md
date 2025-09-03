@@ -31,6 +31,11 @@ dice.register_die("my_dice_pack:d6", {
 ![DICE_API Example Die](https://github.com/Extex101/link-images/blob/main/dice_api_example_die_tooltip.png?raw=true)
 
 
+### Die Types
+Currently supports: Coins, D6, D12, D20
+
+![DICE_API Presets](https://github.com/Extex101/link-images/blob/main/dice_api_die_types.png?raw=true)
+
 ### Personalize your die with:
 `/rename_die <name>`
 
