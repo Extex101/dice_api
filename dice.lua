@@ -279,9 +279,8 @@ function die.return_to_owner(self, dtime)
 end
 
 function die.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
-    local skin = dice.registered_skins[self.skin]
-    if skin.on_punch then
-        return skin.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
+    if self.skin.on_punch then
+        return self.skin.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
     else
         if self.mode == "landed" and self.owner and self.owner == puncher:get_player_name() then
             self.remove(self, puncher)
