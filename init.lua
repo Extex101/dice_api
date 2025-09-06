@@ -4,21 +4,21 @@ dice = {
     path = core.get_modpath("dice_api"),
     sounds = {
         die = {
-            shake = "dice_shake",
-            throw = "dice_throw",
-            fly = "dice_fly",
-            first_impact  = "dice_roll",
-            hit   = "dice_hit",
-            land  = "dice_land",
-            returning = "dice_fly",
+            shake = "dice_api_shake",
+            throw = "dice_api_throw",
+            fly = "dice_api_fly",
+            first_impact  = "dice_api_roll",
+            hit   = "dice_api_hit",
+            land  = "dice_api_land",
+            returning = "dice_api_fly",
         },
         coin = {
-            throw = "dice_coin_throw",
-            fly = "dice_coin_fly",
-            hit   = "dice_coin_hit",
-            land  = "dice_coin_land",
-            returning = "dice_coin_fly",
-            collect = "dice_coin_collect",
+            throw = "dice_api_coin_throw",
+            fly = "dice_api_coin_fly",
+            hit   = "dice_api_coin_hit",
+            land  = "dice_api_coin_land",
+            returning = "dice_api_coin_fly",
+            collect = "dice_api_coin_collect",
         }
     }
 }

@@ -85,6 +85,7 @@ function die.on_activate(self, staticdata)
     self.skin = dice.registered_skins[ItemStack(self.itemstack):get_name()]
     self.timers = data.timers or {}
     self.mode = data.mode or "flying"
+    self.sound_handle = data.sound_handle
     if not self.skin then
         self.remove(self)
         return
@@ -112,10 +113,10 @@ function die.on_activate(self, staticdata)
         glow = self.skin:get("glow"),
         visual_size = {x = die_size, y = die_size},
     })
-    self.object:set_animation(self.skin:get("roll_animation"), 60*self.skin:get("animation_speed"), 0.5, true)
+    self.object:set_animation(self.skin:get("roll_animation"), 60*self.skin:get("animation_speed"), 0.1, true)
     if self.mode == "landed" then
         self.object:set_animation({x=1, y=1}, 0, 0, true)
-    else
+    elseif not self.sound_handle then
         self.sound_handle = dice.play_sound(self.object, self.skin, "fly", true, true)
     end
 end
@@ -125,7 +126,8 @@ function die.get_staticdata(self)
         owner = self.owner,
         itemstack = self.itemstack,
         mode = self.mode,
-        timers = self.timers
+        timers = self.timers,
+        sound_handle = self.sound_handle
     })
 end
 
@@ -326,7 +328,7 @@ function die.on_step(self, dtime, moveresult)
                 physical = false,
                 makes_footstep_sound = false
             })
-            self.object:set_animation(self.skin:get("roll_animation"), 60*self.skin:get("animation_speed"), 0.5, true)
+            self.object:set_animation(self.skin:get("roll_animation"), 60*self.skin:get("animation_speed"), 0.1, true)
             self.sound_handle = dice.play_sound(self.object, self.skin, "returning", true, true)
             if self.skin.on_return then
                 self.skin.on_return(self, core.get_player_by_name(self.owner))
