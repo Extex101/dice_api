@@ -96,6 +96,7 @@ tableCopy = function(t)
     return copy
 end
 merge_tables = function(t, merge_table)
+    t = t or {}
     for key, value in pairs(merge_table) do
         if type(value) == "table" then
             t[key] = merge_tables(t[key] or {}, value)
@@ -116,7 +117,7 @@ local b3d_visual_size = version_numbers[1] == 5 and version_numbers[2] >= 13 or 
 local Skin = {}
 Skin.__index = Skin
 
-local new = function (definition)
+local newSkin = function (definition)
     local self = {
         definition = definition,
     }
@@ -128,6 +129,8 @@ local new = function (definition)
     if self.definition.textures == nil then
         self.definition.glow = 16
     end
+
+    self.definition.groups = self.definition.groups or {}
 
     -- Check the merge properties
     for property, _ in pairs(merge) do
@@ -175,12 +178,8 @@ function Skin.get(self, name)
 end
 
 
-local new_skin = setmetatable({}, {
-    __call = function(_, ...) return new(...) end,
-})
-
 function dice.register_die(name, definition)
-    local skin = new_skin(definition)
+    local skin = newSkin(definition)
     -- Get first frames for the animated textures
     local nodeTextures = tableCopy(skin:get("textures"))
     for i, tex in ipairs(nodeTextures) do
