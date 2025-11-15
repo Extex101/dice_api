@@ -78,18 +78,20 @@ Used by `dice.register_die`.
     -- If true, "/rename_die" will not work on this die
     -- You're a monster.
 
-    preset = "coin" / "d6" / "d12" / "d20",
-    -- Any properties defined in the die definition will override the preset values
-    -- "coin" has two possible outcomes, "heads" or "tails"
+    preset = "coin" / "coin_layered" / "d4" / "d4_layered", -- ect
+    -- Any properties defined in the die definition will override the preset values.
+    -- "coin" has two possible outcomes, "heads" or "tails".
+    -- "d4" is a 4-sided die found in some TTRPGs.
     -- "d6" is the classic 6-sided die found in most board games.
+    -- "d8" is an 8-sided die found in some TTRPGs
     -- "d12" is a 12-sided die found in some TTRPGs.
-    -- "d20" is a 20-sided die found in the majority of TTRPGs
+    -- "d20" is a 20-sided die found in the majority of TTRPGs.
     -- If not defined, no preset will be used.
     
     face_count = 1,
     -- Number of faces on the die.
     -- If left blank it will default to the preset value.
-    -- 2 on coin, 6 on d6, 12 on d12, 20 on d20
+    -- 2 on coin, 4 on d4, 6 on d6, 8 on d8, 12 on d12, 20 on d20
 
     textures = {texture definition 1, def2, def3, def4, def5, def6},
     -- Requires one texture for each mesh buffer/material (in order)

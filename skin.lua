@@ -147,7 +147,6 @@ local newSkin = function (definition)
 
     for property, value in pairs(self.definition) do
         if type(value) == "function" then
-
             self[property] = value
         end
     end
@@ -197,6 +196,14 @@ function dice.register_die(name, definition)
         groups = skin:get("groups"),
         node_placement_prediction = "",
         on_place = function(itemstack, placer, pointed_thing)
+            local under = pointed_thing.under
+            local node = core.get_node(under)
+            local def = core.registered_nodes[node.name]
+
+            if def and def.on_rightclick and not (placer and placer:is_player() and placer:get_player_control().sneak) then
+                return def.on_rightclick(under, node, placer, itemstack, pointed_thing)
+            end
+
             if not placer:is_player() then return itemstack end
             if skin:get("min_shake_time") <= 0 then
                 return dice.throw_die(placer, itemstack)

@@ -32,7 +32,7 @@ dice.register_die("my_dice_pack:d6", {
 
 
 ### Die Types
-Currently supports: Coins, D6, D12, D20
+Supports: Coins, D4, D6, D8, D12, D20
 
 ![DICE_API Presets](https://github.com/Extex101/link-images/blob/main/dice_api_die_types.png?raw=true)
 
@@ -49,4 +49,4 @@ Currently supports: Coins, D6, D12, D20
 ![DICE_API Renamed chat message](https://github.com/Extex101/link-images/blob/main/dice_api_rolled_die_result_renamed.png?raw=true)
 
 ### Disclaimer:
-> > This mod is not intended to be used in the gambling of real-world currency, crate-keys or any other pay-to-obtain in-game currency.
+> This mod is not intended to be used in the gambling of real-world currency, crate-keys or any other pay-to-obtain in-game currency.

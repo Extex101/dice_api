@@ -117,6 +117,21 @@ dice.presets = {
         },
         groups = {dice_coin = 1, dice_d2 = 1},
     },
+    d4 = {
+        mesh = "dice_api_d4.b3d",
+        textures = {"dice_api_d4_no_texture.png"},
+        face_count = 4,
+        collisionbox = {-0.21875, -0.21875, -0.21875, 0.21875, 0.21875, 0.21875},
+        inventory_scale = 2,
+        roll_animation = {x=5, y=45},
+        animation_speed = 2,
+        min_shake_time = 0.2,
+        throw_velocity = 12,
+        face_dir = true,
+        face_dir_pitch = true,
+        face_popup_size = 1,
+        groups = {dice_d4 = 1},
+    },
     d6 = {
         mesh = "dice_api_d6.b3d",
         textures = {"dice_api_d6_no_texture.png"},
@@ -131,6 +146,21 @@ dice.presets = {
         face_dir_pitch = true,
         face_popup_size = 1,
         groups = {dice_d6 = 1},
+    },
+    d8 = {
+        mesh = "dice_api_d8.b3d",
+        textures = {"dice_api_d8_no_texture.png"},
+        face_count = 8,
+        collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.3, 0.3},
+        inventory_scale = 1.9,
+        roll_animation = {x=9, y=38},
+        animation_speed = 1.5,
+        min_shake_time = 0.2,
+        throw_velocity = 12,
+        face_dir = true,
+        face_dir_pitch = true,
+        face_popup_size = 1,
+        groups = {dice_d8 = 1},
     },
     d12 = {
         mesh = "dice_api_d12.b3d",
@@ -176,6 +206,16 @@ tableCopy = function(t)
     end
     return copy
 end
+
+-- Create layered presets as duplicates of existing presets
+local preset_copy = tableCopy(dice.presets)
+for preset_name, preset in pairs(dice.presets) do
+    preset_copy[preset_name.."_layered"] = tableCopy(preset)
+    local layered_preset = preset_copy[preset_name.."_layered"]
+    layered_preset.mesh = layered_preset.mesh:gsub(".b3d", "_layered.b3d")
+    layered_preset.textures[1] = preset.textures[1]:gsub("_no_texture", "_layered_no_texture")
+end
+dice.presets = preset_copy
 
 
 local function lerp(a, b, t) return a + (b - a) * t end
