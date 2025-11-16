@@ -112,7 +112,7 @@ function die.on_activate(self, staticdata)
         mesh = self.skin:get("mesh"),
         glow = self.skin:get("glow"),
         visual_size = {x = die_size, y = die_size},
-        collides_with_objects = self.skin:get("collides_with_objects"),
+        collide_with_objects = self.skin:get("collide_with_objects"),
     })
     self.object:set_animation(self.skin:get("roll_animation"), 60*self.skin:get("animation_speed"), 0.1, true)
     if self.mode == "landed" then
@@ -325,7 +325,7 @@ function die.on_step(self, dtime, moveresult)
         if self.timers.rest > self.skin:get("rest_time") then
             self.mode = "returning"
             self.object:set_properties({
-                collides_with_objects = false,
+                collide_with_objects = false,
                 physical = false,
                 makes_footstep_sound = false
             })
@@ -340,7 +340,7 @@ function die.on_step(self, dtime, moveresult)
     if self.object:get_properties().physical == false then
         self.object:set_properties({
             physical = true,
-            collides_with_objects = self.skin:get("collides_with_objects")
+            collide_with_objects = self.skin:get("collide_with_objects")
         })
     end
 
@@ -400,7 +400,7 @@ core.register_entity("dice_api:popup", {
         visual_size = {x=1, y=1},
         collisionbox = {0, 0, 0, 0, 0, 0},
         physical = false,
-        collides_with_objects = false,
+        collide_with_objects = false,
         makes_footstep_sound = false,
         glow = 15
     },
