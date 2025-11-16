@@ -28,6 +28,7 @@ local defaults = {
     animation_speed = 1,
     fade_fly_sounds = true,
     collisionbox = { -0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
+    collides_with_objects = true,
     physics_properties = {
         gravity = -9.81,
         drag = {

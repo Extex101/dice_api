@@ -112,6 +112,7 @@ function die.on_activate(self, staticdata)
         mesh = self.skin:get("mesh"),
         glow = self.skin:get("glow"),
         visual_size = {x = die_size, y = die_size},
+        collides_with_objects = self.skin:get("collides_with_objects"),
     })
     self.object:set_animation(self.skin:get("roll_animation"), 60*self.skin:get("animation_speed"), 0.1, true)
     if self.mode == "landed" then
@@ -339,7 +340,7 @@ function die.on_step(self, dtime, moveresult)
     if self.object:get_properties().physical == false then
         self.object:set_properties({
             physical = true,
-            collides_with_objects = true
+            collides_with_objects = self.skin:get("collides_with_objects")
         })
     end
 
