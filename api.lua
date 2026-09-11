@@ -217,108 +217,10 @@ for preset_name, preset in pairs(dice.presets) do
 end
 dice.presets = preset_copy
 
-
-local function lerp(a, b, t) return a + (b - a) * t end
-
-local function gradient_colorize(colors, text)
-    local col1 = {
-        r=tonumber(colors[1]:sub(2,3),16),
-        g=tonumber(colors[1]:sub(4,5),16),
-        b=tonumber(colors[1]:sub(6,7),16)
-    }
-    local col2 = {
-        r=tonumber(colors[2]:sub(2,3),16),
-        g=tonumber(colors[2]:sub(4,5),16),
-        b=tonumber(colors[2]:sub(6,7),16)
-    }
-    local new_string = ""
-    for i = 1, #text do
-        local t = (i-1)/(#text-1)
-        local col = {
-            r = math.floor(lerp(col1.r, col2.r, t)),
-            g = math.floor(lerp(col1.g, col2.g, t)),
-            b = math.floor(lerp(col1.b, col2.b, t))
-        }
-        local hex = string.format("#%02x%02x%02x", col.r, col.g, col.b)
-        new_string = new_string..core.get_color_escape_sequence(hex) .. text:sub(i,i)
-    end
-    return new_string..core.get_color_escape_sequence("#ffffff")
-end
-
-
-local default_colors = {
-    RED = "#ff0000",
-    ORANGE = "#ff8000",
-    YELLOW = "#ffff00",
-    GREEN = "#00ff00",
-    CYAN = "#00ffff",
-    BLUE = "#0000ff",
-    PURPLE = "#7700ff",
-    PINK = "#ff00ff",
-    WHITE = "#ffffff",
-    SILVER = "#c0c0c0",
-    GREY = "#505050",
-    BLACK = "#000000",
-    SLUDGE = "#847e68"
-}
-
 function dice.generate_description(tooltip, tooltip_colors, background_color)
     local str = core.get_background_escape_sequence(background_color or "#000000aa")
-
-    if type(tooltip) == "string" then
-        return str .. tooltip
-    end
-    if not tooltip_colors then
-        tooltip_colors = default_colors
-    else
-        for name, color in pairs(default_colors) do
-            if not tooltip_colors[name] then
-                tooltip_colors[name] = color
-            end
-        end
-    end
-
-    local lines = tableCopy(tooltip)
-
-    for _, line in ipairs(lines) do
-        
-        local index = 1
-        local line_length = #line
-        local new_string = core.get_color_escape_sequence("#ffffff")
-        if line == "" or line == " " or line == "\n" then goto next_line end
-
-        while index <= line_length do
-            local start, end_index, tag = line:find("\\(%w+)\\", index)
-            if not start then
-                new_string = new_string .. line:sub(index)
-                break
-            end
-
-            if start > index then
-                new_string = new_string .. line:sub(index, start-1)
-            end
-            local next_start = line:find("\\(%w+)\\", end_index+1)
-            local seg_end = next_start and (next_start - 1) or line_length
-            local segment = line:sub(end_index+1, seg_end)
-
-            local def = tooltip_colors[tag]
-            if type(def) == "string" then
-                new_string = new_string .. core.get_color_escape_sequence(def)..segment
-            elseif type(def) == "table" then
-                new_string = new_string .. gradient_colorize(def, segment)
-            else
-                new_string = new_string .. core.get_color_escape_sequence("#ffffff")..segment
-            end
-
-            
-            index = next_start or (seg_end + 1)
-        end
-
-        ::next_line::
-        str = str .. new_string .. core.get_color_escape_sequence("#ffffff") .. "\n"
-    end
-
-    return str:sub(1, -2).. core.get_color_escape_sequence("#ffffff")
+    str = str..luect.handle_markup(tooltip, {custom_colors = tooltip_colors})
+    return str
 end
 
 core.register_globalstep(function(dtime)
@@ -411,7 +313,7 @@ core.register_chatcommand("rename_die", {
         -- Recostruct the tooltip with the new name
         local tooltip = skin:get("tooltip")
         local new_tooltip = tableCopy(type(tooltip) == "table" and tooltip or {tooltip})
-        new_tooltip[1] = '\\WHITE\\"'..param..'\\WHITE\\"'
+        new_tooltip[1] = '\\white\\"'..param..'\\white\\"'
         local str = dice.generate_description(new_tooltip, skin:get("tooltip_colors"), skin:get("tooltip_tooltip_background_color"))
         itemstack:get_meta():set_string("description", str)
         player:set_wielded_item(itemstack)

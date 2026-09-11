@@ -25,12 +25,12 @@ Functions
 * `dice.generate_description(tooltip, tooltip_colors, background_color)`
     * Colorizes a tooltip based on the tooltip table
     * `tooltip`: is a table containing the tooltip text. Each item in the table is a line.
-    *    * `"\\COLOR NAME\\ Text to be colored \\COLOR NAME 2\\ Text to be colored"`
+    * See [Luect Api](https://github.com/Extex101/luect/blob/main/README.md) for more information
+    *    * `"\\color1\\ Text to be colored \\color1-color2\\ Text to be colored"`
     * `tooltip_colors`: is a table containing color definitions.
-    *    * name = `"#RRGGBB"` -- Single color
-    *    * name = {`"#RRGGBB"`, `"#RRGGBB"`} -- Gradient
+    *    * name = `"#RRGGBB"`
     * `background_color`: is a string in the format "#RRGGBBAA"
-    * Returns a description string
+    * Returns a rendered string
 
 
 Definition tables
@@ -45,20 +45,15 @@ Used by `dice.register_die`.
 {
     tooltip_colors = {
         cream = "#ddbc9c",
-        gradient = {"#ffffff", "#000000"} -- Gradient
+        teal = "#34a887"
     },
-    -- Colors for the tooltip
-    -- Key will be scanned for in the tooltip to set the color of the following text
-    -- Gradients are a table of two colors.
-    -- There is a set of default colors, but more can be defined here.
-    -- RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE, PINK, WHITE, SILVER, GREY, BLACK, and you can't forget SLUDGE
+    -- Custom colors passed to luect
 
     tooltip = {
-        "\\gradient\\Everything's going dark, I'm not long for this world.\\WHITE\\ He dead. \\RED\\RIP",
-        "Make it \\BLUE\\Blue! \\WHITE\\Make it \\PINK\\Pink! But what if...\\cream\\ Cream?",
+        "\\white-black\\Everything's going dark, I'm not long for this world.\\white\\ He dead. \\red\\RIP",
+        "Make it \\blue\\Blue! \\white\\Make it \\pink\\Pink! But what if...\\cream\\ Cream?",
     },
-    -- Tooltip/Description of the die.
-    -- (If a string is given, it will be used as the description)
+    -- Tooltip/Description text of the die. Formatted with
     -- Suggested formatting:
     --     Name
     --
@@ -68,8 +63,6 @@ Used by `dice.register_die`.
     --        -    Lore Text
     -- Though any formatting can be used
     -- First item will be changed with "/rename_die <name>" unless disable_rename is true.
-    -- Colors can be applied with "\\COLOR NAME\\ Text to be colored"
-    -- Gradients are applied the same, ending either at the end of the string or until the next color tag
 
     tooltip_background_color = "#000000aa",
     -- Background color for the entire tooltip.

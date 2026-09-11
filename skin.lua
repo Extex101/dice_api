@@ -1,4 +1,5 @@
 local defaults = {
+    -- Backwards compat
     tooltip_colors = {
         RED = "#ff0000",
         ORANGE = "#ff8000",
@@ -195,6 +196,7 @@ function dice.register_die(name, definition)
         visual_scale = b3d_visual_size and skin:get("inventory_scale") or {x = 1, y = 1, z = 1},
         tiles = nodeTextures,
         groups = skin:get("groups"),
+        use_texture_alpha = "blend",
         node_placement_prediction = "",
         on_place = function(itemstack, placer, pointed_thing)
             local under = pointed_thing.under

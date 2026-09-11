@@ -11,12 +11,12 @@ This mod makes all of that possible with fun and easy-to-use API.
 dice.register_die("my_dice_pack:d6", {
     preset = "d6",
     tooltip = {
-        "\\CYAN\\My D6!",
+        "\\cyan\\My D6!",
         "",
-        "\\GREEN\\Six-Sided",
-        "\\GREEN\\    -    My Dice Pack",
-        "\\GREEN\\    -    Made with Dice API",
-        "\\PINK\\Forged in the fires of mount Gloom."
+        "\\green\\Six-Sided",
+        "\\green\\    -    My Dice Pack",
+        "\\green\\    -    Made with Dice API",
+        "\\pink\\Forged in the fires of mount Gloom."
     },
     textures = {"my_dice_pack_d6.png"},
     -- Pre-packaged sound pack
