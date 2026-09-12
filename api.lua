@@ -219,7 +219,11 @@ dice.presets = preset_copy
 
 function dice.generate_description(tooltip, tooltip_colors, background_color)
     local str = core.get_background_escape_sequence(background_color or "#000000aa")
-    str = str..luect.handle_markup(tooltip, {custom_colors = tooltip_colors})
+    str = str..luect.handle_markup(tooltip, {
+        custom_colors = tooltip_colors,
+        allow_hex = false,
+        gradient_limit = 8
+    })
     return str
 end
 
